@@ -2,7 +2,7 @@
 #include "lexer.h"
 #include "ast.h"
 
-void Parser::parse() {
+bool Parser::parse() {
     Token token = peek_next_token();
 
     switch (token.type) {
@@ -15,12 +15,14 @@ void Parser::parse() {
         } break;
 
         case TOKEN_END_OF_INPUT:
-        return;
+        return true;
 
         default: {
             assert(0);
         } break;
     }
+
+    return false;
 }
 
 Token Parser::peek_next_token() {

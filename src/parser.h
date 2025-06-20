@@ -7,7 +7,7 @@
 const int MIN_PREC = -1000;
 
 struct Parser {
-    void parse();
+    bool parse();
     Token peek_next_token();
     void eat_token();
     Token get_next_token();
@@ -16,6 +16,5 @@ struct Parser {
     Ast *parse_expression(int min_prec);
 
     Lexer *lexer;
-
-    bool input_ended;
+    bool input_ended = false;
 };

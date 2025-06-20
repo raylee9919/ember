@@ -16,17 +16,22 @@
 
 #include <windows.h>
 
+#include <stdio.h>
+
+void test(Parser *parser) {
+}
+
 DWORD WINAPI parser_proc(LPVOID param_ptr) {
     Parser *parser = (Parser *)param_ptr;
     Lexer *lexer = parser->lexer;
 
-    for (;;) {
-        while (lexer->next_index_to_read != lexer->next_index_to_write) {
-            parser->parse();
-        }
+    while (true) {
+        if (parser->parse()) break;
     }
 
-    //return 0;
+    printf("Parsing finished.");
+
+    return 0;
 }
 
 int main(int argc, char **argv) {
